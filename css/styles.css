@@ -5289,6 +5289,102 @@ body.search-is-visible {
 }
 
 /* ===================================================================
+ * # FOOTER
+ *
+ *
+ * ------------------------------------------------------------------- */
+ .s-footer-contact {
+    padding-top    : calc(6 * var(--space));
+    padding-bottom : var(--vspace-2_5);
+    font-weight    : 300;
+    position       : relative;
+}
+
+.s-footer-contact .text-subtitle {
+    margin-bottom : 0;
+}
+
+.s-footer-contact .link-list {
+    list-style  : none;
+    margin-left : 0;
+}
+
+.s-footer-contact .link-list li {
+    padding-left : 0;
+}
+
+.s-footer-contact .link-list a {
+    color  : var(--color-text);
+    border : none;
+}
+
+.s-footer-contact .link-list a:focus,
+.s-footer-contact .link-list a:hover {
+    color : var(--color-1);
+}
+
+.s-footer-contact__contact-header {
+    margin-bottom : var(--vspace-2);
+}
+
+.s-footer-contact__contact-content .left-block {
+    padding-top : var(--vspace-0_25);
+}
+
+.s-footer-contact__contact-content .right-block {
+    margin-left : 15%;
+}
+
+.s-footer-contact__bottom {
+    padding-top : var(--vspace-1_25);
+    font-size   : var(--text-sm);
+    line-height : var(--vspace-0_75);
+    color       : var(--color-gray-14);
+}
+
+.s-footer-contact__bottom a {
+    color : var(--color-1);
+}
+
+/**contact texts**/
+
+.text-huge-title {
+    --text-huge       : 9.4rem;
+    --text-multiplier : 1;
+    font-family       : var(--font-2);
+    font-weight       : 400;
+    font-size         : calc(var(--text-huge) * var(--text-multiplier));
+    line-height       : 1.0638;
+    letter-spacing    : -0.02em;
+    color             : var(--color-text-dark);
+    margin-top        : 0;
+}
+
+.text-pretitle {
+    font-family   : var(--font-1);
+    font-size     : calc(var(--text-size) * 1.1053);
+    font-weight   : 300;
+    line-height   : var(--vspace-1);
+    color         : black;
+    margin-top    : 0;
+    margin-bottom : var(--vspace-0_25);
+    margin-left   : .1em;
+    position      : relative;
+}
+
+.text-subtitle {
+    font-family    : var(--font-1);
+    font-size      : var(--text-size);
+    font-weight    : 500;
+    color          : var(--color-text-dark);
+    text-transform : uppercase;
+    letter-spacing : .2em;
+    margin-top     : 0;
+    margin-bottom  : var(--vspace-0_5);
+}
+
+
+/* ===================================================================
  * # clients
  *
  * ------------------------------------------------------------------- */
@@ -5326,12 +5422,15 @@ body.search-is-visible {
     font-weight: 700;
     font-size: 4.5rem;
     position: relative;
-    color: black;
+    margin-bottom: 5rem;
+    font-family: inherit;
+    background-image: url('images/12319936_SL-011719-17920-65.jpg');
   }
   
   .clients a {
-    color: black;
-    margin-bottom: .5rem;
+    color: gray;
+    margin-bottom: 5rem;
+    
   }
   
   .clients a:hover,
@@ -5342,6 +5441,7 @@ body.search-is-visible {
   .clients li {
     display: inline-block;
     padding: 0 1.5rem;
+    margin-bottom: 5rem;
   }
   
   /* ------------------------------------------------------------------- 
@@ -5414,3 +5514,107 @@ body.search-is-visible {
     }
   
   }
+
+  
+/* ------------------------------------------------------------------- 
+ * ## grid overlay
+ * ------------------------------------------------------------------- */
+.grid-overlay-clients {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    bottom: 0;
+    right: 0;
+    max-width: 1200px;
+    width: 89%;
+    height: 100%;
+    opacity: .5;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    -webkit-transform: translate3d(-50%, 0, 0);
+    -ms-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
+    z-index: 3;
+  }
+  
+  .grid-overlay-clients > div,
+  .grid-overlay-clients::before,
+  .grid-overlay-clients::after {
+    background-color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 1px;
+  }
+  
+  .grid-overlay-clients::before {
+    content: "";
+    left: 25%;
+  }
+  
+  .grid-overlay-clients::after {
+    content: "";
+    right: 25%;
+  }
+  
+  .grid-overlay-clients > div {
+    left: 50%;
+  }
+  
+  /* ------------------------------------------------------------------- 
+   * responsive:
+   * reusable and common theme styles
+   * ------------------------------------------------------------------- */
+  @media only screen and (max-width:1600px) {
+    .grid-overlay-clients {
+      border-right: none !important;
+      border-left: none !important;
+    }
+  
+    .grid-overlay-clients::before {
+      left: 22.5%;
+    }
+  
+    .grid-overlay-clients::after {
+      right: 22.5%;
+    }
+  
+  }
+
+  .subhead {
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 1.333;
+    text-transform: uppercase;
+    letter-spacing: .25rem;
+    color: black;
+    margin-top: 0;
+    margin-bottom: 3rem;
+    position: relative;
+    text-align: center;
+  }
+
+  .col-twelve,
+  .col-full {
+    width: 100%;
+  }
+
+  .display-1-contact {
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 4.6rem;
+    line-height: 1.5;
+    letter-spacing: -0.03rem;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .clients-wrap {
+    margin-top: 6rem;
+  }
+
+  
