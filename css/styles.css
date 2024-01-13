@@ -1732,6 +1732,15 @@ h6, .h6 {
     margin-bottom: 1rem;
 }
 
+.lead-cta, .attention-getter {
+    font-weight: 300;
+    font-size: var(--text-md);
+    line-height: calc(1.125 * var(--space));
+    color: var(--color-text-dark);
+    margin-bottom: -3rem;
+    text-align: center;
+}
+
 @media screen and (max-width: 400px) {
     .lead, .attention-getter {
         font-size: calc(var(--text-size) * 1.0556);
@@ -5618,3 +5627,76 @@ body.search-is-visible {
   }
 
   
+/* ===================================================================
+ * # CTA
+ *
+ *
+ * ------------------------------------------------------------------- */
+.s-cta {
+	padding-top     : 3rem;
+	padding-bottom  : var(--vspace-3_5);
+	background-color: white;
+	color           : var(--color-3);
+}
+
+.s-cta .text-pretitle {
+	color: var(--color-2);
+}
+
+.s-cta .text-display-title {
+	color: var(--color-3);
+    text-align: center;
+}
+
+.s-cta .attention-getter,
+.s-cta .lead-cta {
+	font-weight: 300;
+}
+
+/* ------------------------------------------------------------------- 
+ * responsive:
+ * CTA
+ * ------------------------------------------------------------------- */
+@media screen and (max-width: 1000px) {
+	.s-cta__content .btn {
+		width       : 100%;
+		margin-right: 0;
+	}
+}
+
+/* ===================================================================
+ * # CONTACT
+ *
+ *
+ * ------------------------------------------------------------------- */
+ .s-contact-page {
+    background-color : white;
+    padding-top      : 3rem;
+    padding-bottom   : var(--vspace-3);
+}
+
+.s-contact__content-page {
+    max-width : 600px;
+}
+
+.s-contact__content-page .btn-wrap {
+    max-width : 480px;
+    margin    : 0 auto;
+}
+
+.s-contact__content-page .btn {
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    margin-top      : var(--vspace-1);
+}
+
+.s-contact__content-page .btn svg {
+    margin-right : 1.6rem;
+    height       : var(--vspace-0_75);
+    width        : var(--vspace-0_75);
+}
+
+.s-contact__content-page .btn svg path {
+    fill : white;
+}
