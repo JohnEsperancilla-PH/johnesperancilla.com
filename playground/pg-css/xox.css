@@ -1,0 +1,99 @@
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #121212;
+    color: #00ff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#container {
+    text-align: center;
+}
+
+#status {
+    margin-bottom: 10px;
+}
+
+#current-player {
+    margin-bottom: 5px;
+}
+
+#ai-message {
+    color: #ff0000;
+    font-size: 1em;
+    margin-bottom: 20px;
+    height: 20px; /* Fixed height to maintain consistent spacing */
+    line-height: 20px; /* Align text vertically */
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e1e1e;
+    cursor: pointer;
+    font-size: 2em;
+    color: #00ff00;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5); /* Green shadow for dark mode */
+}
+
+#difficulty-selector {
+    margin-top: 20px;
+}
+
+#difficulty {
+    font-family: 'Courier New', monospace;
+    font-size: 1em;
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 5px;
+    background-color: inherit; /* Matches the background of the container */
+    color: inherit; /* Matches the text color of the container */
+    border-color: inherit; /* Matches the border color of the container */
+    display: inline-block; /* To align it with the buttons */
+    margin-bottom: 10px; /* Space from other elements below */
+}
+
+#reset, #theme-toggle {
+    font-family: 'Courier New', monospace;
+    margin: 10px;
+    padding: 10px;
+    background-color: #1e1e1e;
+    color: #00ff00;
+    border: none;
+    cursor: pointer;
+}
+
+body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.light-mode .cell {
+    background-color: #dddddd;
+    color: black;
+    text-shadow: none; /* Remove shadow for light mode */
+}
+
+body.light-mode #reset, body.light-mode #theme-toggle {
+    background-color: #eeeeee;
+    color: #000000;
+}
+
+body.light-mode #difficulty {
+    background-color: #eeeeee;
+    color: #000000;
+    border-color: #cccccc;
+}
