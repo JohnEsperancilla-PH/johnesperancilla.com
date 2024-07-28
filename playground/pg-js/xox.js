@@ -1,17 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const cells = document.querySelectorAll('.cell');
+    const container = document.getElementById('container');
+    const boardElement = document.getElementById('board');
     const resetButton = document.getElementById('reset');
     const themeToggleButton = document.getElementById('theme-toggle');
-    const difficultySelector = document.getElementById('difficulty');
+    const boardSizeButtons = document.querySelectorAll('.board-size-button');
     const currentPlayerDisplay = document.getElementById('current-player');
     const aiMessage = document.getElementById('ai-message');
     const resultModal = document.createElement('div');
     const modalContent = document.createElement('div');
-    let board = Array(9).fill(null);
+    let board = [];
     const USER = 'X';
     const AI = 'O';
     let currentPlayer = USER;
-    let difficulty = 'medium'; // Default difficulty
+    let boardSize = 3;
+    let winCondition = 3;
 
     function updateCurrentPlayer() {
         currentPlayerDisplay.textContent = `Current Player: ${currentPlayer}`;
@@ -24,45 +26,78 @@ document.addEventListener("DOMContentLoaded", () => {
     themeToggleButton.addEventListener('click', toggleTheme);
 
     function resetBoard() {
-        board.fill(null);
-        cells.forEach(cell => cell.textContent = '');
+        console.log(`Resetting board for size: ${boardSize}`);
+        board = Array(boardSize * boardSize).fill(null);
+        boardElement.innerHTML = '';
+        boardElement.style.gridTemplateColumns = `repeat(${boardSize}, 100px)`;
+        boardElement.style.gridTemplateRows = `repeat(${boardSize}, 100px)`;
+        for (let i = 0; i < board.length; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('cell');
+            cell.dataset.index = i;
+            cell.addEventListener('click', handleClick);
+            boardElement.appendChild(cell);
+        }
         currentPlayer = USER;
         updateCurrentPlayer();
         aiMessage.textContent = '';  // Clear AI message on reset
         resultModal.style.display = 'none';  // Hide result modal
+        console.log(`Board reset completed for size: ${boardSize}`);
     }
 
-    resetButton.addEventListener('click', resetBoard);
-
     function checkWinner(board) {
-        const winningCombos = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6]
-        ];
+        const lines = [];
 
-        for (let combo of winningCombos) {
-            const [a, b, c] = combo;
-            if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-                return board[a];
+        // Horizontal lines
+        for (let i = 0; i < boardSize; i++) {
+            for (let j = 0; j <= boardSize - winCondition; j++) {
+                const line = [];
+                for (let k = 0; k < winCondition; k++) {
+                    line.push(i * boardSize + j + k);
+                }
+                lines.push(line);
+            }
+        }
+
+        // Vertical lines
+        for (let i = 0; i < boardSize; i++) {
+            for (let j = 0; j <= boardSize - winCondition; j++) {
+                const line = [];
+                for (let k = 0; k < winCondition; k++) {
+                    line.push(i + (j + k) * boardSize);
+                }
+                lines.push(line);
+            }
+        }
+
+        // Diagonal lines
+        for (let i = 0; i <= boardSize - winCondition; i++) {
+            for (let j = 0; j <= boardSize - winCondition; j++) {
+                const diagonal1 = [];
+                const diagonal2 = [];
+                for (let k = 0; k < winCondition; k++) {
+                    diagonal1.push((i + k) * (boardSize + 1) + j);
+                    diagonal2.push((i + k) * (boardSize - 1) + (boardSize - 1 - j));
+                }
+                lines.push(diagonal1, diagonal2);
+            }
+        }
+
+        // Check lines for a win
+        for (let line of lines) {
+            if (line.every(index => board[index] && board[index] === board[line[0]])) {
+                return board[line[0]];
             }
         }
 
         return board.includes(null) ? null : 'Tie';
     }
 
-    function minimax(board, depth, isMaximizing) {
+    function minimax(board, depth, isMaximizing, maxDepth) {
         const winner = checkWinner(board);
         if (winner === USER) return -10 + depth;
         if (winner === AI) return 10 - depth;
         if (winner === 'Tie') return 0;
-
-        const maxDepth = difficulty === 'easy' ? 1 : difficulty === 'medium' ? 3 : 6;
 
         if (depth >= maxDepth) return 0;
 
@@ -71,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
             for (let i = 0; i < board.length; i++) {
                 if (board[i] === null) {
                     board[i] = AI;
-                    let eval = minimax(board, depth + 1, false);
+                    let eval = minimax(board, depth + 1, false, maxDepth);
                     board[i] = null;
                     maxEval = Math.max(maxEval, eval);
                 }
@@ -82,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
             for (let i = 0; i < board.length; i++) {
                 if (board[i] === null) {
                     board[i] = USER;
-                    let eval = minimax(board, depth + 1, true);
+                    let eval = minimax(board, depth + 1, true, maxDepth);
                     board[i] = null;
                     minEval = Math.min(minEval, eval);
                 }
@@ -94,10 +129,23 @@ document.addEventListener("DOMContentLoaded", () => {
     function bestMove() {
         let bestScore = -Infinity;
         let move;
+        const maxDepth = boardSize === 3 ? 6 : boardSize === 4 ? 4 : 2;
+
+        // Randomness
+        if (Math.random() < 0.8) {
+            const availableMoves = board.reduce((acc, val, idx) => {
+                if (val === null) acc.push(idx);
+                return acc;
+            }, []);
+            move = availableMoves[Math.floor(Math.random() * availableMoves.length)];
+            console.log(`Random move for AI: ${move}`);
+            return move;
+        }
+
         for (let i = 0; i < board.length; i++) {
             if (board[i] === null) {
                 board[i] = AI;
-                let score = minimax(board, 0, false);
+                let score = minimax(board, 0, false, maxDepth);
                 board[i] = null;
                 if (score > bestScore) {
                     bestScore = score;
@@ -105,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         }
+        console.log(`Best move for AI: ${move}`);
         return move;
     }
 
@@ -119,8 +168,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
             const aiMove = bestMove();
+            if (aiMove === undefined) {
+                console.error('AI move is undefined');
+                return;
+            }
             board[aiMove] = AI;
-            cells[aiMove].textContent = AI;
+            document.querySelector(`.cell[data-index='${aiMove}']`).textContent = AI;
             aiMessage.textContent = '';
 
             const winner = checkWinner(board);
@@ -149,7 +202,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    cells.forEach(cell => cell.addEventListener('click', handleClick));
+    boardSizeButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            boardSize = parseInt(event.target.dataset.size);
+            winCondition = boardSize;
+            console.log(`Board size set to ${boardSize}`);
+            console.log(`Win condition set to ${winCondition}`);
+            resetBoard();
+        });
+    });
+
+    resetButton.addEventListener('click', resetBoard);
 
     // Create and style result modal
     resultModal.style.position = 'fixed';
@@ -165,11 +228,5 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(resultModal);
     resultModal.appendChild(modalContent);
 
-    // Update difficulty on selection change
-    difficultySelector.addEventListener('change', (event) => {
-        difficulty = event.target.value;
-        resetBoard(); // Reset the board when difficulty changes
-    });
-
-    updateCurrentPlayer();
+    resetBoard();
 });
