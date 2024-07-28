@@ -7,10 +7,13 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    overflow: hidden; /* Prevent scrolling */
 }
 
 #container {
     text-align: center;
+    width: 90vw; /* Adjust for mobile view */
+    max-width: 500px; /* Limit max width for larger screens */
 }
 
 #status {
@@ -37,6 +40,7 @@ body {
     display: grid;
     gap: 10px;
     margin-bottom: 20px;
+    width: 100%; /* Ensure board takes full width */
 }
 
 .cell {
@@ -48,6 +52,9 @@ body {
     font-size: 2em;
     color: #00ff00;
     text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    aspect-ratio: 1; /* Ensure cells are square */
+    box-sizing: border-box;
+    border: 2px solid #333; /* Add border to cells */
 }
 
 #reset, #theme-toggle, .board-size-button {
@@ -74,4 +81,202 @@ body.light-mode .cell {
 body.light-mode #reset, body.light-mode #theme-toggle, body.light-mode .board-size-button {
     background-color: #eeeeee;
     color: #000000;
+}
+
+@media (max-width: 768px) {
+    #container {
+        width: 100%;
+        padding: 0 10px; /* Add padding for mobile view */
+    }
+    .cell {
+        font-size: 1.5em;
+    }
+}
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #121212;
+    color: #00ff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+#container {
+    text-align: center;
+    width: 90vw; /* Adjust for mobile view */
+    max-width: 500px; /* Limit max width for larger screens */
+}
+
+#status {
+    margin-bottom: 10px;
+}
+
+#current-player {
+    margin-bottom: 5px;
+}
+
+#ai-message {
+    color: #ff0000;
+    font-size: 1em;
+    margin-bottom: 20px;
+    height: 20px;
+    line-height: 20px;
+}
+
+#menu {
+    margin-bottom: 20px;
+}
+
+#board {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%; /* Ensure board takes full width */
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e1e1e;
+    cursor: pointer;
+    font-size: 2em;
+    color: #00ff00;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    aspect-ratio: 1; /* Ensure cells are square */
+    box-sizing: border-box;
+    border: 2px solid #333; /* Add border to cells */
+}
+
+#reset, #theme-toggle, .board-size-button {
+    font-family: 'Courier New', monospace;
+    margin: 10px;
+    padding: 10px;
+    background-color: #1e1e1e;
+    color: #00ff00;
+    border: none;
+    cursor: pointer;
+}
+
+body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.light-mode .cell {
+    background-color: #dddddd;
+    color: black;
+    text-shadow: none;
+}
+
+body.light-mode #reset, body.light-mode #theme-toggle, body.light-mode .board-size-button {
+    background-color: #eeeeee;
+    color: #000000;
+}
+
+@media (max-width: 768px) {
+    #container {
+        width: 100%;
+        padding: 0 10px; /* Add padding for mobile view */
+    }
+    .cell {
+        font-size: 1.5em;
+    }
+}
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #121212;
+    color: #00ff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+#container {
+    text-align: center;
+    width: 90vw; /* Adjust for mobile view */
+    max-width: 500px; /* Limit max width for larger screens */
+}
+
+#status {
+    margin-bottom: 10px;
+}
+
+#current-player {
+    margin-bottom: 5px;
+}
+
+#ai-message {
+    color: #ff0000;
+    font-size: 1em;
+    margin-bottom: 20px;
+    height: 20px;
+    line-height: 20px;
+}
+
+#menu {
+    margin-bottom: 20px;
+}
+
+#board {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 100%; /* Ensure board takes full width */
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e1e1e;
+    cursor: pointer;
+    font-size: 2em;
+    color: #00ff00;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    aspect-ratio: 1; /* Ensure cells are square */
+    box-sizing: border-box;
+    border: 2px solid #333; /* Add border to cells */
+}
+
+#reset, #theme-toggle, .board-size-button {
+    font-family: 'Courier New', monospace;
+    margin: 10px;
+    padding: 10px;
+    background-color: #1e1e1e;
+    color: #00ff00;
+    border: none;
+    cursor: pointer;
+}
+
+body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.light-mode .cell {
+    background-color: #dddddd;
+    color: black;
+    text-shadow: none;
+}
+
+body.light-mode #reset, body.light-mode #theme-toggle, body.light-mode .board-size-button {
+    background-color: #eeeeee;
+    color: #000000;
+}
+
+@media (max-width: 768px) {
+    #container {
+        width: 100%;
+        padding: 0 10px; /* Add padding for mobile view */
+    }
+    .cell {
+        font-size: 1.5em;
+    }
 }
