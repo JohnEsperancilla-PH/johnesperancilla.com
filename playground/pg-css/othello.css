@@ -1,0 +1,124 @@
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #121212;
+    color: #00ff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+#container {
+    text-align: center;
+    width: 90vw;
+    max-width: 500px;
+}
+
+#status {
+    margin-bottom: 10px;
+}
+
+#current-player {
+    margin-bottom: 5px;
+}
+
+#ai-message {
+    margin-bottom: 30px;
+    color: #ff0000;
+    font-size: 1em;
+    height: 20px;
+    line-height: 20px;
+}
+
+#score {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 0.8em;
+}
+
+#green-score {
+    color: #00ff00;
+    margin-right: 10px;
+}
+
+#white-score {
+    color: #ffffff;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 2px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1e1e1e;
+    cursor: pointer;
+    aspect-ratio: 1;
+    box-sizing: border-box;
+    border: 2px solid #333;
+}
+
+.disk.green {
+    border-color: #00ff00; /* Green outline */
+}
+
+.disk.white {
+    border-color: #ffffff; /* Black outline */
+}
+
+body.light-mode .disk.green {
+    border-color: #006400; /* Dark green outline in light mode */
+}
+
+body.light-mode .disk.black {
+    border-color: #000000; /* Black outline remains the same */
+}
+
+
+#reset, #theme-toggle {
+    font-family: 'Courier New', monospace;
+    margin: 10px;
+    padding: 10px;
+    background-color: #1e1e1e;
+    color: #00ff00;
+    border: none;
+    cursor: pointer;
+}
+
+body.light-mode {
+    background-color: #ffffff;
+    color: #121212;
+}
+
+body.light-mode .cell {
+    background-color: #dddddd;
+}
+
+body.light-mode #reset, body.light-mode #theme-toggle {
+    background-color: #eeeeee;
+    color: #121212;
+}
+
+@media (max-width: 768px) {
+    #container {
+        width: 100%;
+        padding: 0 10px;
+    }
+}
+
+.disk {
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    border: 3px solid transparent; /* Thinner disk border */
+    position: relative;
+}
+
