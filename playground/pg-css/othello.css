@@ -20,6 +20,15 @@ body {
     margin-bottom: 10px;
 }
 
+#game-title {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#version {
+    margin-bottom: 0px;
+}
+
 #current-player {
     margin-bottom: 5px;
 }
