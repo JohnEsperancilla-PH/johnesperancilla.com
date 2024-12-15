@@ -1,0 +1,75 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: black;
+    color: green;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.light {
+    background-color: white;
+    color: black;
+}
+
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(5, 50px);
+    grid-gap: 10px;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    border: 2px solid green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+body.light .cell {
+    border-color: black;
+}
+
+.keyboard {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-gap: 5px;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.key {
+    padding: 10px;
+    border: 2px solid green;
+    cursor: pointer;
+}
+
+body.light .key {
+    border-color: black;
+}
+
+.correct {
+    background-color: green;
+}
+
+.present {
+    background-color: yellow;
+}
+
+.absent {
+    background-color: gray;
+}

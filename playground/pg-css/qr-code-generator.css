@@ -1,0 +1,50 @@
+body {
+    background-color: #000;
+    color: #0f0;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #0f0;
+    border-radius: 10px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #0f0;
+}
+
+input, button {
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+input {
+    width: 80%;
+    background-color: #222;
+    color: #0f0;
+}
+
+button {
+    width: 50%;
+    background-color: #333;
+    color: #0f0;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+#qrcode {
+    margin-top: 20px;
+}

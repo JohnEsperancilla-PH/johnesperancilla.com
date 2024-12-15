@@ -1,0 +1,41 @@
+body {
+    background-color: black;
+    color: green;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#typing-test-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+#text-to-type {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+#typing-area {
+    width: 80%;
+    height: 100px;
+    background-color: black;
+    color: green;
+    border: 2px solid green;
+    font-size: 24px;
+    resize: none;
+    outline: none;
+}
+
+#results {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.correct {
+    color: lime;
+}
+
+.incorrect {
+    color: red;
+}
